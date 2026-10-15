@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lancet Trade Enterprise Catalog </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #c82333;
+            --primary-purple: #3b1e7b;
+            --dark-navy: #0f172a;
+            --bg-light: #f8fafc;
+            --surface: #ffffff;
+            --border-color: #cbd5e1;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --accent-green: #22c55e;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px -5px rgba(15, 23, 42, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding-bottom: 130px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--primary-red);
+            padding: 0.75rem 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-content {
+            max-width: 650px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-logo-svg {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        .brand-titles h1 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            line-height: 1.1;
+        }
+
+        .brand-titles p {
+            font-size: 0.68rem;
+            color: var(--primary-red);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .action-icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-navy);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .app-container {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-purple) 60%, var(--primary-red) 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-banner h2 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero-banner p {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            margin-bottom: 0.8rem;
+        }
+
+        .exchange-box {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: var(--radius-md);
+            padding: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .exchange-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .exchange-input-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .exchange-input-row input {
+            flex: 1;
+            background: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.4rem 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            outline: none;
+        }
+
+        .exchange-result-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        .exchange-result-text span {
+            color: #22c55e;
+            font-weight: 800;
+        }
+
+        .search-filter-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            background: var(--surface);
+            font-size: 0.85rem;
+            outline: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-scroll {
+            display: flex;
+            gap: 0.4rem;
+            overflow-x: auto;
+            padding-bottom: 0.4rem;
+            scrollbar-width: none;
+        }
+
+        .category-scroll::-webkit-scrollbar { display: none; }
+
+        .cat-pill {
+            white-space: nowrap;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cat-pill.active {
+            background: var(--primary-purple);
+            color: white;
+            border-color: var(--primary-purple);
+        }
+
+        .selection-tools {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .select-all-btn {
+            background: none;
+            border: none;
+            color: var(--primary-purple);
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.78rem;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .product-card {
+            background: var(--surface);
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.75rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .product-card.selected {
+            border-color: var(--primary-red);
+            background-color: #fff8f8;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .sec-badge {
+            display: inline-block;
+            font-size: 0.58rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            background: #f0eafb;
+            padding: 0.1rem 0.35rem;
+            border-radius: 4px;
+            margin-bottom: 0.15rem;
+            text-transform: uppercase;
+        }
+
+        .product-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.25;
+            margin-bottom: 0.2rem;
+        }
+
+        .product-price {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--primary-red);
+        }
+
+        .checkbox-indicator {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .product-card.selected .checkbox-indicator {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            color: white;
+        }
+
+        .checkbox-indicator::after {
+            content: '✓';
+            font-size: 0.7rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .product-card.selected .checkbox-indicator::after {
+            display: block;
+        }
+
+        .qty-controls {
+            display: none;
+            align-items: center;
+            gap: 0.25rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.1rem;
+        }
+
+        .product-card.selected .qty-controls {
+            display: flex;
+        }
+
+        .qty-btn {
+            width: 22px;
+            height: 22px;
+            border: none;
+            background: #f1f5f9;
+            color: var(--text-dark);
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .qty-val {
+            font-size: 0.78rem;
+            font-weight: 700;
+            min-width: 14px;
+            text-align: center;
+        }
+
+        .bottom-dock {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            border-top: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            z-index: 100;
+            box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .dock-wrap {
+            max-width: 650px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .dock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dock-count {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .dock-totals {
+            text-align: right;
+        }
+
+        .dock-price-usd {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            line-height: 1.1;
+        }
+
+        .dock-price-sdg {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #16a34a;
+        }
+
+        .dock-buttons {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 0.65rem 0.4rem;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 0.78rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-invoice {
+            background: var(--primary-purple);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 30, 123, 0.3);
+        }
+
+        .btn-action:disabled {
+            background: #cbd5e1 !important;
+            box-shadow: none !important;
+            cursor: not-allowed;
+        }
+
+        #invoiceModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .invoice-card {
+            background: white;
+            max-width: 700px;
+            margin: 1rem auto;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--primary-red);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.82rem;
+        }
+
+        .invoice-table th, .invoice-table td {
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .invoice-table th {
+            background: var(--dark-navy);
+            color: white;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #f1f5f9;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media print {
+            body * { visibility: hidden; }
+            #invoiceModal, #invoiceModal * { visibility: visible; }
+            #invoiceModal { position: absolute; left: 0; top: 0; width: 100%; padding: 0; background: white; }
+            .modal-close-btn, .no-print { display: none !important; }
+            .invoice-card { box-shadow: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="brand-container">
+                <svg class="brand-logo-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 20,40 C 80,10 150,20 180,35 C 120,45 60,35 20,40 Z" fill="#c82333"/>
+                    <path d="M 20,180 C 80,150 150,160 180,175 C 120,190 60,180 20,180 Z" fill="#3b1e7b"/>
+                    <path d="M 40,70 L 60,120 L 75,115 L 55,65 Z" fill="#c82333"/>
+                    <circle cx="85" cy="140" r="25" stroke="#c82333" stroke-width="8" fill="none"/>
+                    <text x="80" y="105" font-family="sans-serif" font-weight="900" font-size="32" fill="#3b1e7b">لأنست</text>
+                    <text x="75" y="145" font-family="sans-serif" font-weight="bold" font-size="28" fill="#c82333">lancet</text>
+                </svg>
+                <div class="brand-titles">
+                    <h1>Lancet Trade Enterprise </h1>
+                    <p>"It is a matter of purity"</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="tel:+97450172810" class="action-icon-btn" title="Call Directly">📞</a>
+                <a href="mailto:abuelfath@hotmail.com" class="action-icon-btn" title="Send Email">✉️</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <div class="hero-banner">
+            <span style="display:inline-block; background:rgba(255,255,255,0.2); padding:0.2rem 0.5rem; border-radius:12px; font-size:0.65rem; font-weight:700; margin-bottom:0.3rem;">Medical Supplies & Equipment </span>
+            <h2>Products Catalog </h2>
+            <p>We deliver top quiality product that help your business to deliver excellent services</p>
+            
+            <div class="exchange-box">
+                <div class="exchange-title">
+                    <span> Exchange Rate (1 USD to SDG)</span>
+                    <span style="font-size:0.65rem; opacity:0.8;">price</span>
+                </div>
+                <div class="exchange-input-row">
+                    <input type="number" id="exchangeRateInput" value="2000" min="1" step="10" oninput="updateCalculations()">
+                    <span style="font-size:0.75rem; font-weight:700;">SDG</span>
+                </div>
+                <div class="exchange-result-text">
+                    Current Rate: 1 USD = <span id="displayRate">2,000</span> SDG
+                </div>
+            </div>
+        </div>
+<div style="margin-bottom: 0.6rem;">
+    <a href="YOUR_PDF_LINK_HERE" target="_blank" class="btn-action btn-invoice" style="width: 100%; justify-content: center; padding: 0.75rem; background: linear-gradient(135deg, var(--primary-purple), var(--primary-red)); text-decoration: none; display: flex;">
+        <span>View Catalog PDF</span>
+    </a>
+</div>
+        <div class="search-filter-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Search catalog equipment..." oninput="renderCatalog()">
+            </div>
+
+            <div class="category-scroll">
+                <button class="cat-pill active" onclick="setCategory('ALL', this)">All Items</button>
+                <button class="cat-pill" onclick="setCategory('A', this)"> Equipment</button>
+                <button class="cat-pill" onclick="setCategory('B', this)">Surgical Sets</button>
+                <button class="cat-pill" onclick="setCategory('C', this)">Histopathology</button>
+                <button class="cat-pill" onclick="setCategory('D', this)">Instruments</button>
+                <button class="cat-pill" onclick="setCategory('E', this)">Furniture & Tools</button>
+                <button class="cat-pill" onclick="setCategory('F', this)">Training Models</button>
+            </div>
+        </div>
+
+        <div class="selection-tools">
+            <span id="showingCount">Showing 0 products</span>
+            <button class="select-all-btn" onclick="toggleSelectAll()">Select / Deselect Visible</button>
+        </div>
+
+        <div id="productGrid" class="product-grid"></div>
+    </div>
+
+    <div class="bottom-dock">
+        <div class="dock-wrap">
+            <div class="dock-header">
+                <span class="dock-count" id="selectedBadge">0 items selected</span>
+                <div class="dock-totals">
+                    <div class="dock-price-usd" id="totalPriceUSD">$0.00 USD</div>
+                    <div class="dock-price-sdg" id="totalPriceSDG">SDG 0.00</div>
+                </div>
+            </div>
+            <div class="dock-buttons">
+                <button class="btn-action btn-whatsapp" id="whatsappBtn" onclick="sendWhatsApp()" disabled>
+                    <span>WhatsApp Quote</span> 💬
+                </button>
+                <button class="btn-action btn-invoice" id="invoiceBtn" onclick="generateInvoiceModal()" disabled>
+                    <span>Download Invoice</span> 📄
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="invoiceModal">
+        <div class="invoice-card">
+            <button class="modal-close-btn" onclick="closeInvoiceModal()">✕</button>
+            
+            <div class="invoice-header">
+                <div>
+                    <h2 style="color: var(--primary-purple); font-size: 1.3rem;">Lancet Trade Enterprise</h2>
+                    <p style="font-size: 0.75rem; color: var(--primary-red); font-style: italic;">"It is a matter of purity"</p>
+                    <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.3rem;">
+                        Web: www.lancetsurgical.qa | P.O. Box 2367<br>
+                        Tel: +974 50172810 | Email: abuelfath@hotmail.com
+                    </p>
+                </div>
+                <div style="text-align: right;">
+                    <h3 style="color: var(--dark-navy); font-size: 1rem;">PRELIMINARY INVOICE</h3>
+                    <p style="font-size: 0.7rem; color: var(--text-muted);" id="invoiceDate">Date: --</p>
+                    <p style="font-size: 0.7rem; color: var(--text-muted);" id="invoiceRef">Ref: LTE-2026-QUOTE</p>
+                </div>
+            </div>
+
+            <div style="background: #f8fafc; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.8rem; font-size: 0.75rem;">
+                📌 <strong>This is a preliminary invoice </strong><br>
+                 <strong>Applied Exchange Rate:</strong> 1 USD = <span id="invoiceRateSpan">2000</span> SDG
+            </div>
+
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>Sec</th>
+                        <th>Product Description</th>
+                        <th style="text-align: center;">Qty</th>
+                        <th style="text-align: right;">Unit (USD)</th>
+                        <th style="text-align: right;">Subtotal (SDG)</th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceTableBody"></tbody>
+            </table>
+
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 1.2rem;">
+                <div style="font-size: 0.7rem; color: var(--text-muted);">
+                    <p>Adress : Sudan - Khartoum - gad ghareeb street </p>
+                    <p style="margin-top: 0.2rem;">Thanks</p>
+                </div>
+                <div style="text-align: right;">
+                    <span style="font-size: 0.75rem; color: var(--text-muted);">Grand Total:</span>
+                    <div style="font-size: 1.2rem; font-weight: 800; color: var(--primary-purple);" id="invoiceGrandUSD">$0.00 USD</div>
+                    <div style="font-size: 0.85rem; font-weight: 700; color: #16a34a;" id="invoiceGrandSDG">SDG 0.00</div>
+                </div>
+            </div>
+
+            <div class="no-print" style="margin-top: 1.2rem; display: flex; gap: 0.5rem; justify-content: flex-end;">
+                <button class="btn-action btn-invoice" onclick="window.print()" style="max-width: 180px;">Print / Download PDF</button>
+                <button class="btn-action" onclick="closeInvoiceModal()" style="background: #e2e8f0; color: var(--text-dark); max-width: 90px;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { id: 1, sec: 'A', name: 'ANATHESIA MACHINE - CHENWEI 301 - ONE EVAPORIZER', price: 11500 },
+            { id: 2, sec: 'A', name: 'ANATHESIA MACHINE - CHENWEI 301 - 2 EVAPORIZER - HALOTH-ISOFLORANE', price: 13000 },
+            { id: 3, sec: 'A', name: 'ANATHESIA MACHINE - CHENWEI 301 - 2 EVAPORIZER SEVO-ISOFLORANE', price: 14500 },
+            { id: 4, sec: 'A', name: 'SEMI ELEC-OP TABLE CARM COMPATIBLE - TMI 1202EL - TECHNOMED', price: 4200 },
+            { id: 5, sec: 'A', name: 'HYDRAULIC OP TABLE CARM COMPATIBLE - TECHNOMED', price: 2950 },
+            { id: 6, sec: 'A', name: 'TRACTION TABLE - TECHNOMED', price: 1350 },
+            { id: 7, sec: 'A', name: 'MOBILE LED OPERATION LAMP - TECHNOMED', price: 2300 },
+            { id: 8, sec: 'A', name: 'DOUBLE DOME OPERATION LAMP - TECHNOMED', price: 2800 },
+            { id: 9, sec: 'B', name: 'MAJOR SURGERY SETS - DELUX - 125 PCS', price: 850 },
+            { id: 10, sec: 'B', name: 'MAJOR SURGERY SETS - 125 PCS', price: 750 },
+            { id: 11, sec: 'B', name: 'FULL OBSE & GYNE SETS - DELUX - 95 PCS', price: 900 },
+            { id: 12, sec: 'B', name: 'ADENOIDECTOMY & TONSILLECTOMY SET - DELUX - 35 PCS', price: 550 },
+            { id: 13, sec: 'B', name: 'ADENOIDECTOMY & TONSILLECTOMY SET - 35 PCS', price: 500 },
+            { id: 14, sec: 'B', name: 'PAEDIATRIC SURGICAL SET - DELUX - 120 PCS', price: 1200 },
+            { id: 15, sec: 'B', name: 'ORTHOPAEDIC BASIC SURGICAL SET - DELUX - 77 PCS', price: 2300 },
+            { id: 16, sec: 'B', name: 'CARDIOVASCULAR SURGERY SET - DELUX - 86 PCS', price: 1200 },
+            { id: 17, sec: 'B', name: 'CARDIOVASCULAR SURGERY SET - 86 PCS', price: 1000 },
+            { id: 18, sec: 'B', name: 'CEASERIAN SET - 55 PCS', price: 450 },
+            { id: 19, sec: 'B', name: 'NORMAL DELIVERY SET - 18 PCS', price: 210 },
+            { id: 20, sec: 'B', name: 'D&C SET - DELUX - 23 PCS', price: 450 },
+            { id: 21, sec: 'B', name: 'D&C SET - 23 PCS', price: 350 },
+            { id: 22, sec: 'B', name: 'OPTHALMIC SURGERY SET - 56 PCS', price: 1200 },
+            { id: 23, sec: 'B', name: 'MINOR SURGERY SET - 16 PCS', price: 65 },
+            { id: 24, sec: 'B', name: 'APLASTIC CONSTRUCTIVE SURGERY SET - 88 PCS', price: 1200 },
+            { id: 25, sec: 'B', name: 'AVI FISTULA SURGERY SET 33 PCS', price: 300 },
+            { id: 26, sec: 'B', name: 'TRAINING SUTUREING KIT', price: 40 },
+            { id: 27, sec: 'B', name: 'VASCULAR DILATORS SET', price: 120 },
+            { id: 28, sec: 'B', name: 'URETHRAL DILATOR SET', price: 110 },
+            { id: 29, sec: 'B', name: 'HYGAR UTERINE DILATOR SET', price: 40 },
+            { id: 30, sec: 'B', name: 'EXTRACTION ADULT SET 10-PCS', price: 90 },
+            { id: 31, sec: 'B', name: 'EXTRACTION PEADIATRIC SET 7-PCS', price: 80 },
+            { id: 32, sec: 'C', name: 'MTP-EP-212 CAROUSAL TYPE AUTOMATIC TISSUE PROCESSOR', price: 16500 },
+            { id: 33, sec: 'C', name: 'MTP-E 112 PIN TYPE AUTOMATIC TISSUE PROCESSOR', price: 10500 },
+            { id: 34, sec: 'C', name: 'MTP-M 111 PIN TYPE AUTOMATIC TISSUE PROCESSOR', price: 8500 },
+            { id: 35, sec: 'C', name: 'TISSUE EMBEDDING CENTRE MTC-TE', price: 10500 },
+            { id: 36, sec: 'C', name: 'SEMI-AUTOMATIC ROTARY MICROTOME-MRM-ST', price: 12500 },
+            { id: 37, sec: 'C', name: 'ROTARY MICROTOME WITH RETRACTION-MRM-R-RM', price: 8500 },
+            { id: 38, sec: 'C', name: 'TISSUE FLOTATION BATH DIGITAL (M-TFB)', price: 700 },
+            { id: 39, sec: 'C', name: 'TISSUE FLOTATION BATH ANALOG (M-WB1)', price: 550 },
+            { id: 40, sec: 'C', name: 'PARAFFIN DISPENSER', price: 900 },
+            { id: 41, sec: 'D', name: 'KIDNEY DISH (SMALL)', price: 7 },
+            { id: 42, sec: 'D', name: 'KIDNEY DISH (MEDIUM)', price: 9 },
+            { id: 43, sec: 'D', name: 'KIDNEY DISH (LARGE)', price: 10 },
+            { id: 44, sec: 'D', name: 'YANKAUR SUCTION TUBE / FINE TIP', price: 8 },
+            { id: 45, sec: 'D', name: 'BABY MOSQUITO 3.5" (STRAIGHT)', price: 5 },
+            { id: 46, sec: 'D', name: 'BABY MOSQUITO 3.5" (CURVED)', price: 5 },
+            { id: 47, sec: 'D', name: 'PROBE SOUND', price: 5 },
+            { id: 48, sec: 'D', name: 'CUSCO SPECULUM (SMALL)', price: 6 },
+            { id: 49, sec: 'D', name: 'CUSCO SPECULUM (MEDIUM)', price: 6 },
+            { id: 50, sec: 'D', name: 'CUSCO SPECULUM (LARGE)', price: 6 },
+            { id: 51, sec: 'D', name: 'VASCULAR PROBE FLEXIBLE ALIVIE TIP', price: 10 },
+            { id: 52, sec: 'D', name: 'BANDAGE SCISSOR 5.5"', price: 6 },
+            { id: 53, sec: 'D', name: 'CASTROVEIJO NEEDLE HOLDER', price: 8 },
+            { id: 54, sec: 'D', name: 'CASTROVEIJO FORCEPS', price: 8 },
+            { id: 55, sec: 'D', name: 'ADSON TISSUE FORCEPS FINE', price: 5 },
+            { id: 56, sec: 'D', name: 'MEDISON TISSUE FORCEPS (NON-TOOTH)', price: 5 },
+            { id: 57, sec: 'D', name: 'TISSUE FORCEPS (TOOTHED)', price: 4 },
+            { id: 58, sec: 'D', name: 'TISSUE FORCEPS (NON-TOOTHED)', price: 4 },
+            { id: 59, sec: 'D', name: 'FREER PERIOSTEAL ELEVATOR', price: 7 },
+            { id: 60, sec: 'D', name: 'CAUTERY WIRE', price: 1.50 },
+            { id: 61, sec: 'D', name: 'CAUTERY EGYPT', price: 55 },
+            { id: 62, sec: 'E', name: 'WAX BLOCK CABINET', price: 600 },
+            { id: 63, sec: 'E', name: 'SLIDE STORAGE CABINET', price: 500 },
+            { id: 64, sec: 'E', name: '10 CHANNEL T&M PHYSIOTHERAPY DEVICE', price: 380 },
+            { id: 65, sec: 'E', name: 'OTOSCOPE', price: 70 },
+            { id: 66, sec: 'E', name: 'OPTHALMOSCOPE', price: 100 },
+            { id: 67, sec: 'E', name: 'LARYNGOSCOPES (5-BLADE / PAED)', price: 60 },
+            { id: 68, sec: 'E', name: 'INSTRUMENT TROLLY', price: 55 },
+            { id: 69, sec: 'E', name: 'INSTRUMENT DRAWER', price: 65 },
+            { id: 70, sec: 'E', name: 'KAZRMYL CONTAINERS (LARGE)', price: 30 },
+            { id: 71, sec: 'E', name: 'KAZRMYL CONTAINERS (MEDIUM)', price: 20 },
+            { id: 72, sec: 'E', name: 'KAZRMYL CONTAINERS (SMALL)', price: 15 },
+            { id: 73, sec: 'E', name: 'VOLTMETER - ANALOG', price: 11 },
+            { id: 74, sec: 'E', name: 'AMETER - ANALOG', price: 11 },
+            { id: 75, sec: 'E', name: 'LITTMANN STETHOSCOPES CLASS II', price: 20 },
+            { id: 76, sec: 'E', name: 'LITTMANN STETHOSCOPES CLASS III', price: 25 },
+            { id: 77, sec: 'E', name: 'CUFF & PUMP SPHYGMO', price: 7 },
+            { id: 78, sec: 'E', name: 'CALIPRE VERNIER', price: 10 },
+            { id: 79, sec: 'E', name: 'DIGITAL SPHYGMOMANOMETER', price: 15 },
+            { id: 80, sec: 'E', name: 'SURGEON GOWN', price: 14 },
+            { id: 81, sec: 'E', name: 'SURGICAL TOWEL - COTTON', price: 10 },
+            { id: 82, sec: 'E', name: 'PATIENT GOWN - COTTON 65%', price: 12 },
+            { id: 83, sec: 'F', name: 'DUAL SEX TORSO WITH OPEN BACK - 32 PART', price: 950 },
+            { id: 84, sec: 'F', name: 'CHILD FULL BODY CPR MODEL', price: 600 },
+            { id: 85, sec: 'F', name: 'DELIVERY MIMIC MODEL', price: 520 },
+            { id: 86, sec: 'F', name: 'BREAST EXAMINATION MODEL', price: 420 },
+            { id: 87, sec: 'F', name: 'IV ARM TRAINING', price: 230 },
+            { id: 88, sec: 'F', name: 'EYE MODEL', price: 90 },
+            { id: 89, sec: 'F', name: 'UTERUS WITH BABY', price: 380 },
+            { id: 90, sec: 'F', name: 'MIDWIFERY BAG - 22-ITEM', price: 300 },
+            { id: 91, sec: 'F', name: 'BRAIN MODEL', price: 70 },
+            { id: 92, sec: 'F', name: 'KIDNEY MODEL', price: 60 },
+            { id: 93, sec: 'F', name: 'LIVER & GALL BLADDER MODEL', price: 90 },
+            { id: 94, sec: 'F', name: 'LUNG MODEL', price: 90 },
+            { id: 95, sec: 'F', name: 'STOMACH MODEL', price: 120 }
+        ];
+
+        let selectedMap = new Map();
+        let activeCategory = 'ALL';
+
+        function setCategory(cat, btnEl) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+            btnEl.classList.add('active');
+            renderCatalog();
+        }
+
+        function renderCatalog() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const grid = document.getElementById('productGrid');
+
+            const filtered = products.filter(item => {
+                const matchesSearch = item.name.toLowerCase().includes(searchVal);
+                const matchesCat = (activeCategory === 'ALL' || item.sec === activeCategory);
+                return matchesSearch && matchesCat;
+            });
+
+            document.getElementById('showingCount').innerText = `Showing ${filtered.length} products`;
+            grid.innerHTML = '';
+
+            filtered.forEach(item => {
+                const isSelected = selectedMap.has(item.id);
+                const qty = selectedMap.get(item.id) || 1;
+
+                const card = document.createElement('div');
+                card.className = `product-card ${isSelected ? 'selected' : ''}`;
+                card.onclick = (e) => toggleSelect(item.id, e);
+
+                card.innerHTML = `
+                    <div class="product-details">
+                        <span class="sec-badge">Section ${item.sec}</span>
+                        <div class="product-title">${item.name}</div>
+                        <div class="product-price">$${item.price.toLocaleString()} USD</div>
+                    </div>
+                    <div class="qty-controls">
+                        <button class="qty-btn" onclick="changeQty(${item.id}, -1, event)">-</button>
+                        <span class="qty-val">${qty}</span>
+                        <button class="qty-btn" onclick="changeQty(${item.id}, 1, event)">+</button>
+                    </div>
+                    <div class="checkbox-indicator"></div>
+                `;
+                grid.appendChild(card);
+            });
+
+            updateCalculations();
+        }
+
+        function toggleSelect(id, event) {
+            if (event.target.closest('.qty-controls')) return;
+            if (selectedMap.has(id)) {
+                selectedMap.delete(id);
+            } else {
+                selectedMap.set(id, 1);
+            }
+            renderCatalog();
+        }
+
+        function changeQty(id, delta, event) {
+            event.stopPropagation();
+            let current = selectedMap.get(id) || 1;
+            let next = current + delta;
+            if (next <= 0) {
+                selectedMap.delete(id);
+            } else {
+                selectedMap.set(id, next);
+            }
+            renderCatalog();
+        }
+
+        function toggleSelectAll() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const visible = products.filter(item => {
+                return item.name.toLowerCase().includes(searchVal) && (activeCategory === 'ALL' || item.sec === activeCategory);
+            });
+
+            const allSelected = visible.every(i => selectedMap.has(i.id));
+            if (allSelected) {
+                visible.forEach(i => selectedMap.delete(i.id));
+            } else {
+                visible.forEach(i => { if (!selectedMap.has(i.id)) selectedMap.set(i.id, 1); });
+            }
+            renderCatalog();
+        }
+
+        function getExchangeRate() {
+            const val = parseFloat(document.getElementById('exchangeRateInput').value);
+            return (isNaN(val) || val <= 0) ? 2000 : val;
+        }
+
+        function updateCalculations() {
+            const rate = getExchangeRate();
+            document.getElementById('displayRate').innerText = rate.toLocaleString();
+
+            let totalUSD = 0;
+            let totalQty = 0;
+
+            selectedMap.forEach((qty, id) => {
+                const item = products.find(i => i.id === id);
+                if (item) {
+                    totalUSD += item.price * qty;
+                    totalQty += qty;
+                }
+            });
+
+            const totalSDG = totalUSD * rate;
+
+            document.getElementById('selectedBadge').innerText = `${totalQty} item(s) selected`;
+            document.getElementById('totalPriceUSD').innerText = `$${totalUSD.toLocaleString()} USD`;
+            document.getElementById('totalPriceSDG').innerText = `SDG ${totalSDG.toLocaleString()}`;
+
+            const hasSelection = selectedMap.size > 0;
+            document.getElementById('whatsappBtn').disabled = !hasSelection;
+            document.getElementById('invoiceBtn').disabled = !hasSelection;
+        }
+
+        function sendWhatsApp() {
+            if (selectedMap.size === 0) return;
+
+            const rate = getExchangeRate();
+            let totalUSD = 0;
+            let itemsStr = "";
+
+            selectedMap.forEach((qty, id) => {
+                const item = products.find(i => i.id === id);
+                if (item) {
+                    const subUSD = item.price * qty;
+                    const subSDG = subUSD * rate;
+                    totalUSD += subUSD;
+                    itemsStr += `%0A• *${item.name}*%0A   Qty: ${qty} | Unit: $${item.price.toLocaleString()} | Subtotal: $${subUSD.toLocaleString()} (SDG ${subSDG.toLocaleString()})`;
+                }
+            });
+
+            const totalSDG = totalUSD * rate;
+            const targetPhone = "97450172810";
+
+            let msg = `Greetings *Lancet Trade Enterprise*,%0A%0A`;
+            msg += `I would like to request an official quotation for the following equipment:%0A`;
+            msg += `${itemsStr}%0A%0A`;
+            msg += `*ESTIMATED TOTAL:*%0A`;
+            msg += `• *$${totalUSD.toLocaleString()} USD*%0A`;
+            msg += `• *SDG ${totalSDG.toLocaleString()}* (at rate 1 USD = ${rate.toLocaleString()} SDG)%0A`;
+            msg += `---------------------------------%0A`;
+            msg += `%0A%0A`;
+            msg += `Please confirm availability and delivery terms. Thank you!`;
+
+            window.open(`https://wa.me/${targetPhone}?text=${msg}`, '_blank');
+        }
+
+        function generateInvoiceModal() {
+            if (selectedMap.size === 0) return;
+
+            const rate = getExchangeRate();
+            const tableBody = document.getElementById('invoiceTableBody');
+            tableBody.innerHTML = '';
+            let totalUSD = 0;
+
+            selectedMap.forEach((qty, id) => {
+                const item = products.find(i => i.id === id);
+                if (item) {
+                    const subUSD = item.price * qty;
+                    const subSDG = subUSD * rate;
+                    totalUSD += subUSD;
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                       
+                        <td>${item.name}</td>
+                        <td style="text-align: center;">${qty}</td>
+                        <td style="text-align: right;">$${item.price.toLocaleString()}</td>
+                        <td style="text-align: right; font-weight: bold; color:#16a34a;">SDG ${subSDG.toLocaleString()}</td>
+                    `;
+                    tableBody.appendChild(tr);
+                }
+            });
+
+            const grandSDG = totalUSD * rate;
+            document.getElementById('invoiceRateSpan').innerText = rate.toLocaleString();
+            document.getElementById('invoiceGrandUSD').innerText = `$${totalUSD.toLocaleString()} USD`;
+            document.getElementById('invoiceGrandSDG').innerText = `SDG ${grandSDG.toLocaleString()}`;
+            document.getElementById('invoiceDate').innerText = `Date: ${new Date().toLocaleDateString()}`;
+            document.getElementById('invoiceRef').innerText = `Ref: LTE-${Math.floor(100000 + Math.random() * 900000)}`;
+
+            document.getElementById('invoiceModal').style.display = 'block';
+        }
+
+        function closeInvoiceModal() {
+            document.getElementById('invoiceModal').style.display = 'none';
+        }
+
+        renderCatalog();
+    </script>
+</body>
+</html>
